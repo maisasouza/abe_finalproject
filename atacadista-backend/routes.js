@@ -3,7 +3,6 @@
 module.exports = function(app) {
     var controllers = require('./controllers');
 
-    // todoList Routes
     app.route('/pedido')
         .post(controllers.novoPedido);
 

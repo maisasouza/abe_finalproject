@@ -1,9 +1,7 @@
 'use strict';
-var Datasource = require('nedb'),
-    express = require('express'),
+var express = require('express'),
     cors = require('cors'),
     bodyparser = require('body-parser'),
-    estoqueDB = new Datasource({ filename: 'estoquefile', autoload: true }),
     server = express();
 
 server.use(cors());
@@ -18,6 +16,6 @@ var routes = require('./routes');
 routes(server);
 
 
-server.get('/', function(req, res) {
-    res.send('Hello World !');
+server.get('/teste', function(req, res) {
+
 });
