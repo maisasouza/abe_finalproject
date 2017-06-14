@@ -34,7 +34,13 @@ exports.novoPedido = function(req, res) {
 };
 
 exports.aceitaPedido = function(req, res) {
-    res.send('Aceita pedido !');
+    pedidosDB.update({ _id: req.params.id }, { $set: { status: 'Solicitado' } }, {}, function(err, numReg) {
+        //TODO: alterar aqui para retornar o objeto atualizado
+        if (numReg > 0) {
+            res.status(200);
+            res.send(numReg + ' registros atualizados');
+        }
+    });
 };
 
 exports.cancelaPedido = function(req, res) {
@@ -46,9 +52,18 @@ exports.atualizaPedido = function(req, res) {
 };
 
 exports.getPedido = function(req, res) {
-    res.send('get pedido !');
+    pedidosDB.find({ '_id': req.params.id }, function(err, pedido) {
+        res.status(200);
+        //pq nao ta setando pra undefined ??
+        pedido.products = undefined;
+        res.send(pedido);
+    });
 };
 
 exports.getProdutosPedido = function(req, res) {
-    res.send('get Produtos pedido !');
+    pedidosDB.find({ '_id': req.params.id }, function(err, pedido) {
+        res.status(200);
+        pedido.products = undefined;
+        res.send(pedido.products);
+    });
 };
