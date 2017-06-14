@@ -7,7 +7,6 @@ host: abeproject.com
 basePath: /atacadista
 schemes:
   - https
-
 consumes:
   - application/json
 produces:
@@ -17,20 +16,107 @@ paths:
     post:
       summary: "Cria-se uma solicitação de pedido."
       tags:
-        - pedido
+        - pedidos
         - orcamento
       parameters:
-        - name: pedidoDTO
+        - name: pedido
+          description: "É passado uma lista de solicitacoes. Em que cada uma contem o cod do produto e a quantidade"
           in: body
+          required: true
           schema:
             type: array
-            items: string #mudar para solicitacaoDTO
-          required: true
+            items:
+              $ref: "#/definitions/SolicitacaoDTO"
+
       responses: 
         '200':
           description: 'ok.'
           schema:
-            type: string #mudar para OrcamentoDTO
+            $ref: "#/definitions/PedidoDTO"
+  /pedido/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+        description: "Número referente ao pedido. Retornado ao cliente no OrcamentoDTO, POST /pedido"
+    get:
+      summary: "Operação que recupera o objeto Pedido: seu status e data de entrega"
+      tags:
+        - pedidos
+      responses:
+        '200':
+          description: 'ok.'
+          schema:
+            $ref: "#/definitions/PedidoDTO"
+    put:
+      summary: "Operação que aceita o pedido e formaliza o pedido. O status passa de aguardando confirmação para solicitado"
+      tags:
+        - pedidos
+      responses:
+        '200':
+          description: 'ok.'
+          schema:
+            $ref: "#/definitions/PedidoDTO"
+    delete:
+      summary: "Operação que rejeita o pedido."
+      tags:
+        - pedidos
+      responses:
+        '200':
+          description: 'ok. Pedido rejeitado com sucesso.'
+    patch:
+      summary: "Operação que atualiza o status do pedido."
+      #aqui ta faltando o parametro de entrada
+      responses:
+        '200':
+          description: 'ok. Retorna o pedido com status atualizado.'
+          schema:
+            $ref: "#/definitions/PedidoDTO"
+    
+  /pedido/{id}/produtos:
+    get:
+      summary: "Retorna os produtos referente a determinado pedido"
+      tags:
+        - produtos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          description: "Número referente ao pedido."
+      responses:
+        '200':
+          description: 'ok.'
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/PedidoDTO"
+
+definitions:
+  SolicitacaoDTO:
+    type: object
+    properties:
+      codProduto:
+        type: integer
+      quantidade:
+        type: integer
+      observacao: 
+        description: "Campo opcional para o caso do cliente desejar colocar alguma observação sobre o produto requerido"
+        type: string 
+  PedidoDTO:
+    type: object
+    properties:
+      numero:
+        description: "Número identificador do pedido"
+        type: integer
+      dataEntrega:
+        description: "Data de entrega estimada caso o pedido seja aceito"
+        type: string
+        format: date
+      status:
+        type: string
+        enum: [Aguardando Confirmação, Solicitado, Em fabricação, Finalizado, Despachado]
 
 
 
