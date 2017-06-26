@@ -14,8 +14,3 @@ console.log('API Atacadista listening to port 3000...');
 
 var routes = require('./routes');
 routes(server);
-
-
-server.get('/teste', function(req, res) {
-
-});

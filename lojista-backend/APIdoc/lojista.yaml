@@ -1,0 +1,39 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Lojista
+  description: API disponibilizada pelo Lojista
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /atualizacaoPedido:
+    post:
+      summary: "Atualização da situação de algum pedido realizado pelo lojista. Lojista recebe uma notificação quando o status é alterado no atacadista"
+      parameters:
+        - name: Pedido
+          description: "É passado o pedido com sua data de entrega e seu novo status."
+          in: body
+          required: true
+          schema:
+              $ref: "#/definitions/PedidoDTO"
+      responses: 
+        '200':
+          description: 'ok. Atualização de status recebida com sucesso !'
+definitions:
+  PedidoDTO:
+    type: object
+    properties:
+      numero:
+        description: "Número identificador do pedido"
+        type: integer
+      dataEntrega:
+        description: "Data de entrega estimada caso o pedido seja aceito"
+        type: string
+        format: date
+      status:
+        type: string
+        enum: [Aguardando Confirmação, Solicitado, Em fabricação, Finalizado, Despachado, Cancelado]

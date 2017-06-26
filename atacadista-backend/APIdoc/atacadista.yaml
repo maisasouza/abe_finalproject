@@ -3,7 +3,6 @@ info:
   version: '1.0.0'
   title: Atacadista
   description: API disponibilizada pelo Atacadista
-host: http://localhost:3000
 schemes:
   - https
 consumes:
@@ -13,20 +12,16 @@ produces:
 paths:
   /pedido:
     post:
-      summary: "Cria-se uma solicitação de pedido."
-      tags:
-        - pedidos
-        - orcamento
+      summary: "Cria-se uma solicitação de pedido. Esta solicitação é armazenada e pendente de confirmação."
       parameters:
-        - name: pedido
-          description: "É passado uma lista de solicitacoes. Em que cada uma contem o cod do produto e a quantidade"
+        - name: solicitação de pedido
+          description: "É passado uma lista de solicitações. Em que cada uma contem o cod do produto, a quantidade e uma observação (opcional)"
           in: body
           required: true
           schema:
             type: array
             items:
               $ref: "#/definitions/SolicitacaoDTO"
-
       responses: 
         '200':
           description: 'ok.'
@@ -38,11 +33,9 @@ paths:
         in: path
         required: true
         type: integer
-        description: "Número referente ao pedido. Retornado ao cliente no OrcamentoDTO, POST /pedido"
+        description: "Chave do pedido. Campo número do objeto PedidoDTO"
     get:
       summary: "Operação que recupera o objeto Pedido: seu status e data de entrega"
-      tags:
-        - pedidos
       responses:
         '200':
           description: 'ok.'
@@ -50,34 +43,19 @@ paths:
             $ref: "#/definitions/PedidoDTO"
     put:
       summary: "Operação que aceita o pedido e formaliza o pedido. O status passa de aguardando confirmação para solicitado"
-      tags:
-        - pedidos
       responses:
         '200':
           description: 'ok.'
           schema:
             $ref: "#/definitions/PedidoDTO"
     delete:
-      summary: "Operação que rejeita o pedido."
-      tags:
-        - pedidos
+      summary: "Operação que rejeita o pedido. Status do pedido passa para cancelado"
       responses:
         '200':
           description: 'ok. Pedido rejeitado com sucesso.'
-    patch:
-      summary: "Operação que atualiza o status do pedido."
-      #aqui ta faltando o parametro de entrada
-      responses:
-        '200':
-          description: 'ok. Retorna o pedido com status atualizado.'
-          schema:
-            $ref: "#/definitions/PedidoDTO"
-    
   /pedido/{id}/produtos:
     get:
       summary: "Retorna os produtos referente a determinado pedido"
-      tags:
-        - produtos
       parameters:
         - name: id
           in: path
@@ -91,7 +69,6 @@ paths:
             type: array
             items:
               $ref: "#/definitions/PedidoDTO"
-
 definitions:
   SolicitacaoDTO:
     type: object
@@ -115,4 +92,4 @@ definitions:
         format: date
       status:
         type: string
-        enum: [Aguardando Confirmação, Solicitado, Em fabricação, Finalizado, Despachado]
+        enum: [Aguardando Confirmação, Solicitado, Em fabricação, Finalizado, Despachado, Cancelado]
