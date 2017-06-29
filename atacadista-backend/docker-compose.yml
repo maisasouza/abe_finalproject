@@ -1,0 +1,7 @@
+version: '2'
+services:
+  web:
+    restart: always
+    environment:
+      NODE_ENV: stage
+    ports: [ '127.0.0.1:3000:3000' ]
