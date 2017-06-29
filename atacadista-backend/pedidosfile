@@ -1,4 +1,5 @@
 {"deliveryDate":{"$$date":1498262400535},"products":[{"cod":"001","qtd":"12"},{"cod":"002","qtd":"13"},{"cod":"003","qtd":"15"}],"status":"Solicitado","_id":"0Jl2L7xsrKTUh0Wm"}
+{"deliveryDate":{"$$date":1499558400332},"products":[{"codProduto":"001","quantidade":10},{"codProduto":"002","quantidade":15,"observacao":"Entrega na cor vermelha"}],"status":"Solicitado","_id":"3DnouI0QJS49zOZC"}
 {"deliveryDate":{"$$date":1499212800353},"products":[{"codProduto":"001","quantidade":3},{"codProduto":"004","quantidade":3}],"status":"Solicitado","_id":"3hi3vrKDsDnsEU2s"}
 {"deliveryDate":{"$$date":1499212800200},"products":[{"codProduto":"001","quantidade":3},{"codProduto":"004","quantidade":5}],"status":"Aguardando confirmação","_id":"4s8gghPzDhyvkAEm"}
 {"deliveryDate":{"$$date":1497292080145},"products":[{"cod":"001","qtd":"28","obs":"Only horror books"},{"cod":"002","qtd":"50","obs":"Only black pens"},{"cod":"003","qtd":"75"}],"_id":"5CLHvMv2tOXj4FS3"}
@@ -10,5 +11,6 @@
 {"deliveryDate":{"$$date":1497225600161},"products":[{"cod":"001","qtd":"12"},{"cod":"002","qtd":"13"},{"cod":"003","qtd":"15"}],"status":"Aguardando confirmação","_id":"Q52gQWHqB0Ysyv9t"}
 {"deliveryDate":{"$$date":1497225600780},"products":[{"cod":"001","qtd":"12"},{"cod":"002","qtd":"13"},{"cod":"003","qtd":"15"}],"status":"Aguardando confirmação","_id":"Vg9SlAid7379TtYe"}
 {"deliveryDate":{"$$date":1497225600715},"products":[{"cod":"001","qtd":"12"},{"cod":"002","qtd":"13"},{"cod":"003","qtd":"15"}],"status":"Em fabricação","_id":"d48LHLC5seFUzz3I"}
+{"deliveryDate":{"$$date":1499558400625},"products":[{"codProduto":"001","quantidade":10},{"codProduto":"002","quantidade":15,"observacao":"Entrega na cor vermelha"}],"status":"Finalizado","_id":"nuU7wmbDBLoZE7d7"}
 {"deliveryDate":{"$$date":1499212800007},"products":[{"codProduto":"001","quantidade":3},{"codProduto":"002","quantidade":5}],"status":"Solicitado","_id":"pfrpUX4hhSIo9rC0"}
 {"deliveryDate":{"$$date":1497294387596},"products":[{"cod":"001","qtd":"10"},{"cod":"002","qtd":"12"},{"cod":"003","qtd":"13"}],"_id":"xI8GGwLrFFSFrfwP"}
